@@ -1,17 +1,21 @@
 <?php
 
-class AlbumApiModel {
-    private $db;
+class AlbumApiModel extends Model {
+
+    public function getAlbums($id = null) {
+        
+        if ( !isset($id) ) {
+            $query = $this->db->prepare('SELECT * FROM albumes ORDER BY album_nombre');
+            $query->execute();
     
-    public function __construct() {
-        $this->db = new PDO(DB_CONNECT_STRING, DB_USER, DB_PASS);
-    }
+            $albums = $query->fetchAll(PDO::FETCH_OBJ);
+            return $albums;
+        }
 
-    public function getAlbums() {
-        $query = $this->db->prepare('SELECT * FROM albumes ORDER BY album_nombre');
-        $query->execute();
+        $query = $this->db->prepare('SELECT * FROM albumes WHERE album_id=?');
+        $query->execute([$id]);
 
-        $albums = $query->fetchAll(PDO::FETCH_OBJ);
-        return $albums;
+        $album = $query->fetch(PDO::FETCH_OBJ);
+        return $album;
     }
 }

@@ -12,8 +12,19 @@ class AlbumApiController {
         $this->view = new ApiView();
     }
 
-    public function getAlbums($params = null) {
-        $albums = $this->model->getAlbums();
-        return $this->view->response($albums, 200);
+    public function getAlbums($params = []) {
+        if ( empty($params) ) {
+            $albums = $this->model->getAlbums();
+            return $this->view->response($albums, 200);
+        }
+
+        $id = $params[':ID'];
+        $album = $this->model->getAlbums($id);
+
+        if ( !empty($album) ) {
+            return $this->view->response(200, $album);
+        } else {
+            return $this->view->response(404);
+        }
     }
 }
