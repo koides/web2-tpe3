@@ -8,11 +8,12 @@ require_once './app/controllers/comments.api.controller.php';
 $router = new Router();
 
 // define la tabla de ruteo
-$router->addRoute('albums',         'GET',      'AlbumApiController',   'getAlbums');
-$router->addRoute('albums/:ID',     'GET',      'AlbumApiController',   'getAlbums');
-$router->addRoute('comments',       'POST',     'CommentApiController', 'addComment');
-//$router->addRoute('tareas', 'POST', 'TaskApiController', 'crearTarea');
-//$router->addRoute('tareas/:ID', 'GET', 'TaskApiController', 'obtenerTarea');
+$router->addRoute('albums',         'GET',      'AlbumApiController',       'getAlbums');
+$router->addRoute('albums/:ID',     'GET',      'AlbumApiController',       'getAlbums');
+
+$router->addRoute('comments',       'GET',      'CommentApiController',     'getComment');
+$router->addRoute('comments/:ID',   'GET',      'CommentApiController',     'getComment');
+$router->addRoute('comments',       'POST',     'CommentApiController',     'addComment');
 
 // rutea
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

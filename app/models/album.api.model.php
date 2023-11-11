@@ -1,6 +1,8 @@
 <?php
 
-class AlbumApiModel extends Model {
+require_once './app/models/api.model.php';
+
+class AlbumApiModel extends ApiModel {
 
     public function getAlbums($id = null) {
         
