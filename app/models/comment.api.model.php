@@ -21,7 +21,18 @@ class CommentApiModel extends ApiModel {
         return $comment;
     }
 
-    public function addComment() {
+    public function saveComment($comentario, $puntuacion, $album, $id = null) {
+        if ( isset($id) ) {
+            $query = $this->db->prepare('UPDATE comentarios SET comentario=?, puntuacion=?, album=? WHERE comentario_id=?');
+            $query->execute([$comentario, $puntuacion, $album, $id]);
+        } else {
+            $query = $this->db->prepare('INSERT INTO comentarios (comentario, puntuacion, album) VALUES (?, ?, ?)');
+            $query->execute([$comentario, $puntuacion, $album]);
+        }
+    }
 
+    public function deleteComment($id) {
+        $query = $this->db->prepare('DELETE FROM comentarios WHERE comentario_id=?');
+        $query->execute([$id]);
     }
 }

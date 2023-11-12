@@ -1,21 +1,20 @@
 <?php
 
+require_once './app/controllers/api.controller.php';
 require_once './app/models/album.api.model.php';
 require_once './app/view/api.view.php';
 
-class AlbumApiController {
-    private $model;
-    private $view;
+class AlbumApiController extends ApiController {
 
     public function __construct() {
+        parent::__contruct();
         $this->model = new AlbumApiModel();
-        $this->view = new ApiView();
     }
 
     public function getAlbums($params = []) {
         if ( empty($params) ) {
             $albums = $this->model->getAlbums();
-            return $this->view->response($albums, 200);
+            return $this->view->response(200, $albums);
         }
 
         $id = $params[':ID'];

@@ -13,7 +13,9 @@ $router->addRoute('albums/:ID',     'GET',      'AlbumApiController',       'get
 
 $router->addRoute('comments',       'GET',      'CommentApiController',     'getComment');
 $router->addRoute('comments/:ID',   'GET',      'CommentApiController',     'getComment');
-$router->addRoute('comments',       'POST',     'CommentApiController',     'addComment');
+$router->addRoute('comments',       'POST',     'CommentApiController',     'saveComment');
+$router->addRoute('comments/:ID',   'PUT',      'CommentApiController',     'saveComment');
+$router->addRoute('comments/:ID',   'DELETE',   'CommentApiController',     'deleteComment');
 
 // rutea
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
