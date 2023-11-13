@@ -10,12 +10,12 @@ class ApiView {
 
     private function _requestStatus($code) {
         $status = array(
-            200 => "OK",
+            200 => "Ok",
             201 => "Created",
-            204 => "coulo",
-            400 => "400",
+            204 => "No response",
+            400 => "Bad request",
             404 => "Not found",
-            500 => "Internal Server Error"
+            500 => "Internal server error"
         );
         //return (isset($status[$code])) ? $status[$code] : $status[500];
         if ( isset($status[$code])) {

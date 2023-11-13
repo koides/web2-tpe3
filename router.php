@@ -1,15 +1,19 @@
 <?php
-require_once './app/config/config.php';
-require_once './app/libs/router.helper.php';
-require_once './app/controllers/album.api.controller.php';
-require_once './app/controllers/comments.api.controller.php';
+require_once './api/config/config.php';
+require_once './api/libs/router.api.php';
+require_once './api/controllers/album.api.controller.php';
+require_once './api/controllers/song.api.controller.php';
+require_once './api/controllers/comments.api.controller.php';
 
 // crea el router
 $router = new Router();
 
 // define la tabla de ruteo
 $router->addRoute('albums',         'GET',      'AlbumApiController',       'getAlbums');
-$router->addRoute('albums/:ID',     'GET',      'AlbumApiController',       'getAlbums');
+$router->addRoute('albums/:ID',     'GET',      'AlbumApiController',       'getAlbum');
+
+$router->addRoute('songs',          'GET',      'SongApiController',        'getSongs');
+$router->addRoute('songs/:ID',      'GET',      'SongApiController',        'getSongs');
 
 $router->addRoute('comments',       'GET',      'CommentApiController',     'getComment');
 $router->addRoute('comments/:ID',   'GET',      'CommentApiController',     'getComment');

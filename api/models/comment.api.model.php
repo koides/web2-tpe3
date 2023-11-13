@@ -1,6 +1,6 @@
 <?php
 
-require_once './app/models/api.model.php';
+require_once './api/models/api.model.php';
 
 class CommentApiModel extends ApiModel {
 

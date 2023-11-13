@@ -1,8 +1,8 @@
 <?php
 
-require_once './app/controllers/api.controller.php';
-require_once './app/models/comment.api.model.php';
-require_once './app/view/api.view.php';
+require_once './api/controllers/api.controller.php';
+require_once './api/models/comment.api.model.php';
+require_once './api/view/api.view.php';
 
 class CommentApiController extends ApiController {
     private $albumModel;
