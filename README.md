@@ -29,8 +29,6 @@ _Aclaraciones:_
 
   - **{ruta_serividor_apache}/api**
 
-    - \*En adelante nos referiremos a la ruta del servidor como **BASE_URL.\***
-
 ---
 
 ### - Requerimientos
