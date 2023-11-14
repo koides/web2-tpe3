@@ -13,13 +13,14 @@ $router->addRoute('albums',         'GET',      'AlbumApiController',       'get
 $router->addRoute('albums/:ID',     'GET',      'AlbumApiController',       'getAlbum');
 
 $router->addRoute('songs',          'GET',      'SongApiController',        'getSongs');
-$router->addRoute('songs/:ID',      'GET',      'SongApiController',        'getSongs');
+$router->addRoute('songs/:ID',      'GET',      'SongApiController',        'getSongById');
 
-$router->addRoute('comments',       'GET',      'CommentApiController',     'getComment');
-$router->addRoute('comments/:ID',   'GET',      'CommentApiController',     'getComment');
+$router->addRoute('comments',       'GET',      'CommentApiController',     'getComments');
+$router->addRoute('comments/:ID',   'GET',      'CommentApiController',     'getCommentById');
 $router->addRoute('comments',       'POST',     'CommentApiController',     'saveComment');
 $router->addRoute('comments/:ID',   'PUT',      'CommentApiController',     'saveComment');
 $router->addRoute('comments/:ID',   'DELETE',   'CommentApiController',     'deleteComment');
+$router->setDefaultRoute(                       'ApiController',            'error');
 
 // rutea
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

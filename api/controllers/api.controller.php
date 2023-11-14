@@ -1,6 +1,6 @@
 <?php
 
-abstract class ApiController {
+class ApiController {
     protected $model;
     protected $view;
     private $data;
@@ -12,5 +12,12 @@ abstract class ApiController {
 
     public function getData(){
         return json_decode($this->data);
+    }
+
+    public function error($params = []) {
+        $this->view->response([
+            'data' => 'No es posible procesar la solicitud',
+            'status' => 'error'
+        ], 400);
     }
 }
