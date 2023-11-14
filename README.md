@@ -63,9 +63,9 @@ Contar con la base de datos correspondiente:
 
     - **?newer** : recibe un número de tipo **int** y devuelve una lista con todos los albums que tengan un **año igual o posterior al indicado**.
 
-    -**?artist** : recibe un **string** y devuelve una lista con todos los albums que lo **contengan dentro del nombre de su artista**.
+    - **?artist** : recibe un **string** y devuelve una lista con todos los albums que lo **contengan dentro del nombre de su artista**.
 
-    -**?label** : recibe un **string** y devuelve una lista con todos los albums que lo **contengan dentro del nombre de su sello discografico**.
+    - **?label** : recibe un **string** y devuelve una lista con todos los albums que lo **contengan dentro del nombre de su sello discografico**.
 
   ##### - GET: /albums/:ID
 
@@ -87,6 +87,18 @@ Contar con la base de datos correspondiente:
 
   - Este Endpoint devuelve dentro de **"data"** una lista de la tabla canciones guardada en la base de datos.
 
+    - **?name** : recibe un **string** y devuelve una lista con todos las canciones que lo **contengan dentro de su nombre**.
+
+    - **?shorter** : recibe un número de tipo **int** y devuelve una lista con todos las canciones que tengan una **duracion igual o menor a la indicada**.
+
+    - **?longer** : recibe un número de tipo **int** y devuelve una lista con todas las canciones que tengan una **duracion igual o mayor a la indicada**.
+
+    - **?artist** : recibe un **string** y devuelve una lista con todos los albums que lo **contengan dentro del nombre de su artista**.
+
+    - **?album_id** : recibe un número de tipo **int** y devuelve una lista con todas las canciones que **pertenescan al album correspondiente**.
+
+    - **?track** : recibe un número de tipo **int** y devuelve una lista con todas las canciones **con ese número de track**.
+
   ##### - GET: /songs/:ID
 
   - Este Endpoint devuelve dentro de **"data"** una canción solicitada mediante su **ID**.
@@ -105,6 +117,14 @@ Contar con la base de datos correspondiente:
   ##### - GET: /comments
 
   - Este Endpoint devuelve dentro de **"data"** una lista de la tabla comentarios guardada en la base de datos.
+
+    - **?comment** : recibe un **string** y devuelve una lista con todos los comentarios que lo **contengan dentro**.
+
+    - **?higher** : recibe un número de tipo **int** y devuelve una lista con todos los comentarios que tengan una **puntuacion igual o mayor a la indicada**.
+
+    - **?lower** : recibe un número de tipo **int** y devuelve una lista con todas los comentarios que tengan una **puntuacion igual o menor a la indicada**.
+
+    - **?album_id** : recibe un numero **int** y devuelve una lista con todos los comentarios **correspondientes a ese album**.
 
   ##### - POST: /comments
 
@@ -130,9 +150,9 @@ Contar con la base de datos correspondiente:
 
 - #### Parámemtros de ordenamiento:
 
-  Al solicitar una lista de entidades **_(ver [GET: /albums](#--get-albums) y [GET: /songs](#--get-songs))_** podemos usar los siguientes query params para controlar cómo se muestra la lista incluída en el altributo **"data"** de la respuesta:
+  Al solicitar una lista de entidades podemos usar los siguientes query params para controlar cómo se muestra la lista incluída en el altributo **"data"** de la respuesta:
 
-  - **?sort_by** : Este parámetro recibe un string que **debe corresponder** con uno de los **campos de la entidad solicitada**. (De no corresponder se enviará la respuesta ordenada por el campo por defecto).
+  - **?sort** : Este parámetro recibe un string que **debe corresponder** con uno de los **campos de la entidad solicitada**. (De no corresponder se enviará la respuesta ordenada por el campo por defecto).
 
   - **?order** : Este parámetro recibe un número entero que puede ser 1 o 0. Si es **1** se ordenará la lista de manera **descendiente**. De ser **0 o cualquier otro número** se ordenara **ascendentemente**.
 
@@ -140,64 +160,6 @@ Contar con la base de datos correspondiente:
 
   Al solicitar una **lista de entidades**, podemos usar los siguientes query params para paginar la respuesta
 
-  - **?per_page** : Recibe un **número entero** que define la cantidad de elementos que contendrá cada página. **El valor por defecto es de 10**.
+  - **?show** : Recibe un **número entero** que define la cantidad de elementos que contendrá cada página. **El valor por defecto es de 10**.
 
   - **?page** : Indica la página que se quiere recuperar.
-
-  _Un ejemplo de respuestas por página pudiera ser:_
-
-  ```json
-  /*
-  Respuesta de request con verbo GET a:
-      BASE_URL/api/albums?per_page=3page=1sort_by=title
-  */
-  {
-      "data" :
-      {
-          {
-              "id": 43,
-              "title": "Album 1",
-              [...]
-          },
-          {
-              "id": 4,
-              "title": "Album 2",
-              [...]
-          },
-          {
-              "id": 34,
-              "title": "Album 3",
-              [...]
-          }
-      },
-      "status": "success"
-  }
-
-  /*
-  Respuesta de request con verbo GET a:
-      BASE_URL/api/albums?per_page=3page=2sort_by=title
-  */
-  {
-      "data":
-      {
-          {
-              "id": 3,
-              "title": "Album 4",
-              [...]
-          },
-          {
-              "id": 434,
-              "title": "Album 5",
-              [...]
-          },
-          {
-              "id": 343,
-              "title": "Album 6",
-              [...]
-          }
-      },
-      "status": "success"
-  }
-  ```
-
-  ***
