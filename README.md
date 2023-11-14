@@ -71,6 +71,41 @@ Contar con la base de datos correspondiente:
 
   - Este Endpoint devuelve el album con el ID indicado dentro de **"data"**.
 
+- #### Songs
+
+  ```json
+  {
+    "cancion_id": "55",
+    "cancion_nombre": "nombre",
+    "album": "ID del album al cual pertenece la cancion",
+    "duracion": "555", //en segundos
+    "track": "1" //numero de track
+  }
+  ```
+
+  ##### - GET: /songs
+
+  - Este Endpoint devuelve dentro de **"data"** una lista de la tabla canciones guardada en la base de datos.
+
+  ##### - GET: /songs/:ID
+
+  - Este Endpoint devuelve dentro de **"data"** una canción solicitada mediante su **ID**.
+
+- #### Comments
+
+  ```json
+  {
+    "comentario_id": "3",
+    "comentario": "este disco esta buenisimo!",
+    "puntuacion": "5",
+    "album": "29" //ID del album que se desea comentar
+  }
+  ```
+
+  ##### - GET: /comments
+
+  - Este Endpoint devuelve dentro de **"data"** una lista de la tabla comentarios guardada en la base de datos.
+
   ##### - POST: /comments
 
   - Este endpoint recibe un objeto **JSON** en el body del **HTTP Request** del siguiente formato:
@@ -92,78 +127,6 @@ Contar con la base de datos correspondiente:
   ##### - DELETE: /comments/:ID
 
   - Este endpoint elimina el comentario con el **ID** indicado. De realizarse correctamente, devuelve un mensaje de confirmacion dentro del atributo **"data"** de la respuesta.
-
-- #### Songs
-
-  ```json
-  {
-    "cancion_id": "55",
-    "cancion_nombre": "nombre",
-    "album": "ID del album al cual pertenece la cancion",
-    "duracion": "555", //en segundos
-    "track": "1" //numero de track
-  }
-  ```
-
-  ##### - GET: /songs
-
-  - Este Endpoint devuelve dentro de **"data"** una lista de la tabla songs guardada en la base de datos.
-
-  ##### - GET: /songs/:ID
-
-  - Este Endpoint devuelve dentro de **"data"** una canción solicitada mediante su **ID**.
-
-  ##### - POST: /songs **[TP]**
-
-  - Este Endpoint crea una nueva canción a partir de los siguientes datos introducidos en el body:
-
-    ```json
-    /*los parametros requeridos son "title" y "album_id" */
-    {
-      "title": "nombre de la canción",
-      "rel_date": "año-mes-dia de publicación",
-      "album_id": "N° de id del album al que pertenece",
-      "lyrics": "letra de la canción"
-    }
-    ```
-
-    Dentro de **"data"** se devolverá la canción creada en el mismo formato.
-
-  ##### - PUT: /songs/:ID **[TP]**
-
-  - Este Endpoint permite modificar una canción seleccionada mediante su **ID**, introduciendo los parámetros en formato JSON desde el body.
-    Dentro de **"data"** se devolvera la canción con todos sus datos incluídas las modificaciones.
-  - **\*Aclaración**: se deben respetar los **campos obligatorios\***.
-
-  ##### - DELETE: /songs/:ID **[TP]**
-
-  - Este Endpoint elimina la canción mediante el **ID** proporcionado. Dentro de **"data"** se leerá **"la cancion con N° de id = el id proporcionado se eliminó con exito"**.
-
-- #### Autorización
-
-  ##### - POST: /auth
-
-  - Este Endpoint recibe en el body del **HTTP Request** un objeto de tipo **JSON** con las propiedades **"name"** y **"password'**. De ser correctos los datos introducidos, se proporcionará dentro de **"data"** un token que permite identificarse.
-
-  - _Ejemplo_:
-
-    ```json
-        //Objeto a incluir en el body del HTTP Request
-        {
-            "name": "nombre_de_usuario",
-            "password": "password"
-        }
-
-        //Ejemplo de la respuesta
-        {
-            "data": "token generado",
-            "status": "success"
-        }
-    ```
-
-  - El **token** generado mediante este endpoint será requerido para todos los request de tipo **POST, PUT, o DELETE** de las entidades de datos. Deberá agregarse a los **Headers** del request en el siguiente formato:
-
-          Autorization: Bearer <Token generado>
 
 - #### Parámemtros de ordenamiento:
 
